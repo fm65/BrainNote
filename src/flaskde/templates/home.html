@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Home Page</h2>
+<p>Welcome back, {{ username }}!</p>
+<form action="/task" method="post" style="display: inline-block">
+
+    <p style="display: inline-block"> <input type="text" name="content" size="50"></p>
+    <input type="submit" value="Add task">
+
+</form>
+
+<ul>
+
+{% for task in tasks %}
+    <li>
+        {% if task.done %} <strike> {% endif %}{{ task.content }} {% if task.done %} </strike>{% endif %}
+        <a href="/done/{{ task.id }}">X</a>
+        <a href="/delete/{{ task.id }}">Delete</a>
+    </li>
+{% endfor %}
+
+</ul>
+
+{% endblock %}
