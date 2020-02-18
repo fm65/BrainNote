@@ -35,7 +35,7 @@ def login():
         user = cursor.fetchone()
         # check user
         if user is None:
-            msg = 'Incorrect username!'
+            msg = 'Incorrect authentication credentials!'
         elif not check_password_hash(user['password'], password):
             msg = 'Incorrect password!'
         # If user exists in users table in out database
