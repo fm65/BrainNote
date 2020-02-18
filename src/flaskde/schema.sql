@@ -10,8 +10,8 @@ CREATE TABLE user (
 
 CREATE TABLE task (
   id INT(11) AUTO_INCREMENT PRIMARY KEY,
-  author_id INT(11) NOT NULL,
-  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  author_id INTEGER NOT NULL,
   content TEXT NOT NULL,
+  done boolean DEFAULT false,
   FOREIGN KEY (author_id) REFERENCES user (id)
 );

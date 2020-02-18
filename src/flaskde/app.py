@@ -23,7 +23,8 @@ def login():
     # Output message if something goes wrong...
     msg = ''
     # Check if "username" and "password" POST requests exist (user submitted form)
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+    if request.method == 'POST' and 'username' in request.form and \
+            'password' in request.form:
         # Create variables for easy access
         username = request.form['username']
         password = request.form['password']
@@ -65,8 +66,10 @@ def logout():
 def register():
     # Output message if something goes wrong...
     msg = ''
-    # Check if "username", "password" and "email" POST requests exist (user submitted form)
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
+    # Check if "username", "password" and "email" 
+    #POST requests exist (user submitted form)
+    if request.method == 'POST' and 'username' in request.form and \
+            'password' in request.form and 'email' in request.form:
         # Create variables for easy access
         username = request.form['username']
         password = request.form['password']
@@ -85,8 +88,10 @@ def register():
         elif not username or not password or not email:
             msg = 'Please fill out the form!'
         else:
-            # User doesnt exists and the form data is valid, now insert new user into users table
-            cursor.execute('INSERT INTO user VALUES (NULL, %s, %s, %s)', (username,generate_password_hash(password), email))
+            # User doesnt exists and the form data is valid, 
+            #now insert new user into users table
+            cursor.execute('INSERT INTO user VALUES (NULL, %s, %s, %s)', 
+                    (username,generate_password_hash(password), email))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
     elif request.method == 'POST':
@@ -103,7 +108,7 @@ def home():
     if 'loggedin' in session:
         # Check if task exists in MySQL
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM task')
+        cursor.execute('SELECT * FROM task WHERE author_id = %s', (session['id'],))
         tasks = cursor.fetchall()
         # User is loggedin show them the home page
         return render_template('home.html', username=session['username'], tasks=tasks)
@@ -138,7 +143,11 @@ def add_task():
             if not content:
                 return redirect('/home')
 
-            cursor.execute('INSERT INTO task VALUES (NULL, %s, 0)', (content,))
+            cursor.execute(
+                'INSERT INTO task (content, done, author_id)'
+                'VALUES (%s, 0, %s)', 
+                (content, session['id'])
+            )
             mysql.connection.commit()
             return redirect('/home')
 
