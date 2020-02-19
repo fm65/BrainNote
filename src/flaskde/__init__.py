@@ -15,7 +15,7 @@ def create_app(test_config=None):
     app.config['MYSQL_USER'] = 'root'
     app.config['MYSQL_PASSWORD'] = 'mysql65p@'
     app.config['MYSQL_DB'] = 'todolistdb'
-
+    
     # Intialize MySQL
     mysql = MySQL(app)
 
