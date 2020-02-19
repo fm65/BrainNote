@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS task;
+
 CREATE DATABASE todolistdb;
 use todolistdb;
 
