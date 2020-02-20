@@ -2,23 +2,24 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
+import os
 import re
 
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
 
 # Change this to your secret key (can be anything, it's for extra protection)
 app.secret_key = 'dev'
 
 # Enter your database connection details below
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'mysql65p@'
-app.config['MYSQL_DB'] = 'todolistdb'
+app.config['MYSQL_HOST'] = 'eu-cdbr-west-02.cleardb.net'
+app.config['MYSQL_USER'] = 'be63f11518eaeb'
+app.config['MYSQL_PASSWORD'] = 'eb3aa71d'
+app.config['MYSQL_DB'] = 'heroku_5ea03c56b0e78a0'
 
 # Intialize MySQL
 mysql = MySQL(app)
 
-@app.route('/login/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
     # Output message if something goes wrong...
     msg = ''
@@ -179,3 +180,8 @@ def resolve_task(task_id):
         cursor.execute('UPDATE task SET done = %s WHERE id = %s', (True, task_id))
     mysql.connection.commit()
     return redirect('/home')
+
+
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
