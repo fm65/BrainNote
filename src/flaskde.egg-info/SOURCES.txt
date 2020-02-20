@@ -1,0 +1,16 @@
+MANIFEST.in
+setup.py
+flaskde/__init__.py
+flaskde/schema.sql
+flaskde.egg-info/PKG-INFO
+flaskde.egg-info/SOURCES.txt
+flaskde.egg-info/dependency_links.txt
+flaskde.egg-info/not-zip-safe
+flaskde.egg-info/requires.txt
+flaskde.egg-info/top_level.txt
+flaskde/static/style.css
+flaskde/templates/home.html
+flaskde/templates/index.html
+flaskde/templates/layout.html
+flaskde/templates/profile.html
+flaskde/templates/register.html
