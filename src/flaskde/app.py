@@ -11,10 +11,10 @@ app = Flask(__name__, instance_relative_config=True)
 app.secret_key = 'dev'
 
 # Enter your database connection details below
-app.config['MYSQL_HOST'] = 'db'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
-app.config['MYSQL_DB'] = 'todolistdb'
+app.config['MYSQL_HOST'] = 'eu-cdbr-west-02.cleardb.net'
+app.config['MYSQL_USER'] = 'be63f11518eaeb'
+app.config['MYSQL_PASSWORD'] = 'eb3aa71d'
+app.config['MYSQL_DB'] = 'heroku_5ea03c56b0e78a0'
 
 # Intialize MySQL
 mysql = MySQL(app)
