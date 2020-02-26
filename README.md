@@ -10,7 +10,7 @@ Ce projet porte sur une application Do To List.
 ###### Langage
 - Front : HTML, CSS
 - Back : Python
-- SGBD : SQL
+- SGBD : MySQL
 
 ###### Fonctionnalité
 - inscription
